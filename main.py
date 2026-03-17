@@ -70,9 +70,9 @@ HTML = """<!DOCTYPE html>
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
 body {
-  background: #111318;
-  color: #e8ecf2;
-  font-family: 'Inter', system-ui, sans-serif;
+  background: #f8f7f5;
+  color: #1a1a1a;
+  font-family: -apple-system, BlinkMacSystemFont, 'Inter', system-ui, sans-serif;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -80,181 +80,142 @@ body {
 
 /* ── TOPBAR ── */
 .topbar {
-  background: #1c1f27;
-  border-bottom: 1px solid #2e3340;
-  padding: 14px 28px;
+  background: #ffffff;
+  border-bottom: 0.5px solid #e5e3df;
+  padding: 12px 20px;
   display: flex;
   align-items: center;
   gap: 12px;
   flex-shrink: 0;
 }
-.brand {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 1.05rem;
-  font-weight: 700;
-  color: #5b8af5;
-  letter-spacing: .05em;
+.logo {
+  width: 32px; height: 32px;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #f97316, #ea580c);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
 }
-.sub {
-  font-size: .62rem;
-  color: #636b7a;
-  text-transform: uppercase;
-  letter-spacing: .1em;
-  margin-top: 2px;
-}
+.brand { font-size: 14px; font-weight: 500; color: #1a1a1a; }
+.sub   { font-size: 11px; color: #888; margin-top: 1px; }
 .badge {
-  padding: 3px 10px;
-  border-radius: 20px;
-  font-size: .62rem;
-  font-weight: 700;
-  border: 1px solid;
+  font-size: 11px; padding: 3px 10px;
+  border-radius: 20px; font-weight: 500;
 }
-.badge-green { background: rgba(52,209,122,.12); color: #34d17a; border-color: rgba(52,209,122,.3); }
-.badge-blue  { background: rgba(91,138,245,.12);  color: #5b8af5;  border-color: rgba(91,138,245,.3); }
-.badge-gray  { background: rgba(99,107,122,.12);  color: #636b7a;  border-color: rgba(99,107,122,.3); }
+.badge-green { background: #dcfce7; color: #15803d; }
+.badge-yellow{ background: #fef9c3; color: #854d0e; }
+.badge-blue  { background: #e0f2fe; color: #0369a1; }
+.badge-gray  { background: #f1f1f1; color: #888; }
 
 /* ── CHAT ── */
 .chat-wrap {
-  flex: 1;
-  overflow-y: auto;
-  padding: 24px 20px;
+  flex: 1; overflow-y: auto;
+  padding: 20px 16px;
 }
 #chat-log {
-  max-width: 900px;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
+  max-width: 820px; margin: 0 auto;
+  display: flex; flex-direction: column; gap: 14px;
 }
+.msg-wrap { display: flex; flex-direction: column; gap: 3px; }
+.msg-wrap.user { align-items: flex-end; }
+.msg-wrap.agent { align-items: flex-start; }
+.msg-label { font-size: 11px; color: #aaa; padding: 0 4px; }
 
 .msg {
-  padding: 14px 18px;
-  border-radius: 12px;
-  font-size: .875rem;
-  line-height: 1.75;
-  max-width: 90%;
-  border: 1px solid #2e3340;
-}
-.msg.user {
-  background: #1c1f27;
-  align-self: flex-end;
-  color: #e8ecf2;
-  max-width: 72%;
-}
-.msg.agent {
-  background: #16191f;
-  align-self: flex-start;
-  color: #9ba3b2;
+  padding: 11px 15px;
+  font-size: 13px; line-height: 1.7;
+  max-width: 82%;
   white-space: pre-wrap;
 }
-.msg.agent b,
-.msg.agent strong { color: #e8ecf2; }
+.msg.user {
+  background: linear-gradient(135deg, #f97316, #ea580c);
+  color: #fff;
+  border-radius: 12px 0 12px 12px;
+}
+.msg.agent {
+  background: #ffffff;
+  color: #1a1a1a;
+  border-radius: 0 12px 12px 12px;
+  border: 0.5px solid #e5e3df;
+}
+.msg.agent b, .msg.agent strong { color: #1a1a1a; font-weight: 500; }
 .msg.agent code {
-  background: #1c1f27;
-  padding: 1px 6px;
-  border-radius: 3px;
-  font-family: monospace;
-  font-size: .8rem;
-  color: #5b8af5;
+  background: #f3f2ef; padding: 1px 6px;
+  border-radius: 4px; font-family: monospace;
+  font-size: .8rem; color: #ea580c;
 }
-.msg.agent .tag-up   { color: #34d17a; font-weight: 600; }
-.msg.agent .tag-down { color: #f25c6e; font-weight: 600; }
 
-/* Thinking animation */
-.thinking {
-  color: #636b7a;
-  font-style: italic;
-}
+.thinking { color: #aaa; font-style: italic; }
 .dot-anim::after {
   content: '';
-  animation: dots 1.4s steps(3, end) infinite;
+  animation: dots 1.4s steps(3,end) infinite;
 }
 @keyframes dots {
-  0%   { content: ''; }
-  33%  { content: '.'; }
-  66%  { content: '..'; }
-  100% { content: '...'; }
+  0%  { content: ''; }
+  33% { content: '.'; }
+  66% { content: '..'; }
+  100%{ content: '...'; }
 }
 
 /* ── INPUT BAR ── */
 .input-bar {
-  background: #111318;
-  border-top: 1px solid #2e3340;
-  padding: 14px 20px;
+  background: #ffffff;
+  border-top: 0.5px solid #e5e3df;
+  padding: 12px 16px;
   flex-shrink: 0;
 }
-
 .quick-btns {
-  max-width: 900px;
-  margin: 0 auto 10px;
-  display: flex;
-  gap: 7px;
-  flex-wrap: wrap;
+  max-width: 820px; margin: 0 auto 10px;
+  display: flex; gap: 6px; flex-wrap: wrap;
 }
 .q-btn {
-  background: #1c1f27;
-  border: 1px solid #2e3340;
-  color: #9ba3b2;
-  border-radius: 16px;
-  padding: 5px 13px;
-  font-size: .7rem;
-  cursor: pointer;
-  transition: all .15s;
+  font-size: 11px; padding: 5px 12px;
+  border-radius: 20px;
+  border: 0.5px solid #e5e3df;
+  background: #f8f7f5; color: #666;
+  cursor: pointer; transition: all .15s;
 }
-.q-btn:hover {
-  border-color: #5b8af5;
-  color: #e8ecf2;
-}
+.q-btn:hover { border-color: #f97316; color: #ea580c; background: #fff7ed; }
 
 .input-row {
-  max-width: 900px;
-  margin: 0 auto;
-  display: flex;
-  gap: 10px;
+  max-width: 820px; margin: 0 auto;
+  display: flex; gap: 8px; align-items: flex-end;
 }
 textarea {
   flex: 1;
-  background: #1c1f27;
-  border: 1px solid #363c4a;
-  color: #e8ecf2;
-  border-radius: 8px;
-  padding: 11px 15px;
-  font-size: .875rem;
-  resize: none;
-  font-family: inherit;
-  outline: none;
+  background: #f8f7f5;
+  border: 0.5px solid #e5e3df;
+  color: #1a1a1a;
+  border-radius: 12px;
+  padding: 10px 14px;
+  font-size: 13px; resize: none;
+  font-family: inherit; outline: none;
   transition: border-color .2s;
+  line-height: 1.5;
 }
-textarea:focus { border-color: #5b8af5; }
-textarea::placeholder { color: #636b7a; }
+textarea:focus { border-color: #f97316; background: #fff; }
+textarea::placeholder { color: #bbb; }
 
 .send-btn {
-  background: #5b8af5;
-  color: #fff;
-  border: none;
-  border-radius: 8px;
-  padding: 0 22px;
-  font-weight: 600;
-  font-size: .82rem;
-  cursor: pointer;
-  transition: background .15s;
-  white-space: nowrap;
+  width: 38px; height: 38px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #f97316, #ea580c);
+  border: none; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0; transition: opacity .15s;
 }
-.send-btn:hover    { background: #4a79e8; }
-.send-btn:disabled { opacity: .5; cursor: not-allowed; }
+.send-btn:hover   { opacity: .85; }
+.send-btn:disabled{ opacity: .4; cursor: not-allowed; }
 
-/* HTMX loading indicator */
 #loader {
-  display: none;
-  height: 2px;
-  background: linear-gradient(90deg, #5b8af5, #a78bfa, #5b8af5);
+  display: none; height: 2px;
+  background: linear-gradient(90deg, #f97316, #ea580c, #f97316);
   background-size: 200%;
   animation: shimmer 1.2s linear infinite;
 }
 .htmx-request #loader { display: block; }
 @keyframes shimmer {
-  0%   { background-position: 100%; }
-  100% { background-position: 0%; }
+  0%  { background-position: 100%; }
+  100%{ background-position: 0%; }
 }
 </style>
 </head>
@@ -263,27 +224,23 @@ textarea::placeholder { color: #636b7a; }
 <div id="loader"></div>
 
 <div class="topbar">
+  <div class="logo">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </div>
   <div>
     <div class="brand">ORB AI Agent</div>
-    <div class="sub">FastAPI · HTMX · phidata · GPT-4o-mini</div>
+    <div class="sub">Groq · LLaMA 3.3 · ml_engine · trading_db</div>
   </div>
-  <span class="badge badge-green">● Live</span>
-  <span class="badge {ml_cls}">🧠 ML {ml_txt}</span>
-  <span class="badge {db_cls}">🗄 DB {db_txt}</span>
+  <span class="badge badge-green" style="margin-left:auto">● Live</span>
+  <span class="badge {ml_cls}">ML {ml_txt}</span>
+  <span class="badge {db_cls}">DB {db_txt}</span>
 </div>
 
 <div class="chat-wrap">
   <div id="chat-log">
-    <div class="msg agent">
-👋 <b>ORB Trading AI Agent</b> — conectado a datos reales de mercado.
-
-Prueba estos comandos:
-  • <code>Dame un plan para SPY hoy</code>
-  • <code>¿Se llenará el gap de QQQ?</code>
-  • <code>Análisis ML de AAPL</code>
-  • <code>Compara SPY y QQQ</code>
-  • <code>Noticias de NVDA</code>
-  • <code>Stats de la base de datos para SPY</code>
+    <div class="msg-wrap agent">
+      <div class="msg-label">ORB Agent</div>
+      <div class="msg agent">Hey! Pregúntame sobre cualquier ticker — analizo gaps, ORB, ML y genero planes de trading completos.<br><br>Prueba: <code>Dame un plan para SPY hoy</code></div>
     </div>
   </div>
 </div>
@@ -306,7 +263,9 @@ Prueba estos comandos:
       placeholder="Pregunta sobre cualquier ticker: SPY, QQQ, AAPL, NVDA..."
       onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();enviar()}"
     ></textarea>
-    <button class="send-btn" id="btn" onclick="enviar()">Enviar ↵</button>
+    <button class="send-btn" id="btn" onclick="enviar()">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M22 2L11 13M22 2L15 22l-4-9-9-4 20-7z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
   </div>
 </div>
 
@@ -325,7 +284,7 @@ function enviar() {
   const log = document.getElementById('chat-log');
 
   // Mensaje del usuario
-  log.innerHTML += `<div class="msg user">${esc(msg)}</div>`;
+  log.innerHTML += `<div class="msg-wrap user"><div class="msg-label">Tú</div><div class="msg user">${esc(msg)}</div></div>`;
 
   // Indicador de carga
   const tid = 'think_' + Date.now();
@@ -376,9 +335,9 @@ function esc(s) {
 
 def build_html() -> str:
     ml_cls = "badge-blue"  if ML_AVAILABLE else "badge-gray"
-    ml_txt = "✅ activo"   if ML_AVAILABLE else "❌ off"
+    ml_txt = "on" if ML_AVAILABLE else "off"
     db_cls = "badge-blue"  if DB_AVAILABLE else "badge-gray"
-    db_txt = "✅ activo"   if DB_AVAILABLE else "❌ off"
+    db_txt = "on" if DB_AVAILABLE else "off"
     return HTML.replace("{ml_cls}", ml_cls).replace("{ml_txt}", ml_txt) \
                .replace("{db_cls}", db_cls).replace("{db_txt}", db_txt)
 
@@ -409,7 +368,7 @@ async def chat(message: str = Form(...)):
     # 1. Revisar caché
     cached = _from_cache(k)
     if cached:
-        return HTMLResponse(f'<div class="msg agent">{cached} <small style="color:#636b7a">💾 caché</small></div>')
+        return HTMLResponse(f'<div class="msg-wrap agent"><div class="msg-label">ORB Agent · caché</div><div class="msg agent">{cached}</div></div>')
 
     # 2. Rate limit
     if not _rate_ok():
@@ -447,7 +406,7 @@ async def chat(message: str = Form(...)):
     except Exception as e:
         html = f"❌ Error: {e}"
 
-    return HTMLResponse(f'<div class="msg agent">{html}</div>')
+    return HTMLResponse(f'<div class="msg-wrap agent"><div class="msg-label">ORB Agent</div><div class="msg agent">{html}</div></div>')
 
 
 @app.get("/health")

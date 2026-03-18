@@ -26,9 +26,13 @@ from fastapi.responses import HTMLResponse
 import uvicorn
 
 from agent import crear_agente, ML_AVAILABLE, DB_AVAILABLE
+from live import router as live_router
+from crystal import router as crystal_router
 
 app   = FastAPI()
 agent = crear_agente()
+app.include_router(live_router)
+app.include_router(crystal_router)
 
 # ── Caché para no gastar API ──────────────────────────────────────────────────
 import time, hashlib
@@ -231,7 +235,10 @@ textarea::placeholder { color: #bbb; }
     <div class="brand">ORB AI Agent</div>
     <div class="sub">Groq · LLaMA 3.3 · ml_engine · trading_db</div>
   </div>
-  <span class="badge badge-green" style="margin-left:auto">● Live</span>
+  <div style="margin-left:auto;display:flex;gap:8px">
+  <a href="/live" style="font-size:11px;padding:5px 12px;border-radius:16px;background:rgba(249,115,22,.12);color:#f97316;border:1px solid rgba(249,115,22,.3);text-decoration:none;font-weight:500">⚡ Live</a>
+  <a href="/crystal" style="font-size:11px;padding:5px 12px;border-radius:16px;background:rgba(0,212,255,.08);color:#00d4ff;border:1px solid rgba(0,212,255,.2);text-decoration:none;font-weight:500">💎 Crystal</a>
+</div>
   <span class="badge {ml_cls}">ML {ml_txt}</span>
   <span class="badge {db_cls}">DB {db_txt}</span>
 </div>

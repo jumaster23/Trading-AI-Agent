@@ -126,7 +126,7 @@ def train_from_daily(ticker, daily_df, backtest_fn, months=12, min_move=2.0):
     return summary
 
 def pattern_score(ticker, ctx, rec, gap_dir="flat", gap_pct=0,
-                  gap_size="tiny", fill_prob=50, top_k=30, min_sim=0.55):
+                gap_size="tiny", fill_prob=50, top_k=30, min_sim=0.55):
     db=load_db(ticker); days=db.get("days",{})
     if len(days)<5:
         return {"similar_n":0,"quality":0,"recommendation":"TRAIN",

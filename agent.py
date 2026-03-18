@@ -557,7 +557,9 @@ def comparar_tickers(ticker1: str, ticker2: str) -> str:
 def crear_agente() -> Agent:
     return Agent(
         name="ORB Trading AI Agent",
-        model=Groq(id="llama-3.3-70b-versatile"),
+        provider=Groq(id="llama-3.3-70b-versatile"),
+        agent_id="orb-trading-agent",
+        session_id="default",
         tools=[
             analizar_ticker,
             analisis_gap,
@@ -583,6 +585,7 @@ def crear_agente() -> Agent:
             "Responde en español siempre.",
             "Termina siempre con: ⚠ Las estadísticas pasadas no garantizan resultados futuros.",
         ],
+        add_chat_history_to_messages=True,
         markdown=True,
         show_tool_calls=True,
     )
